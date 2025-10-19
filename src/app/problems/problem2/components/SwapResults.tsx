@@ -71,30 +71,36 @@ export function SwapResults({
   ];
 
   return (
-    <Card className="border-green-200 bg-green-50">
+    <Card className="border-green-800 bg-green-900/20">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-green-800">
-          <CheckCircle className="w-5 h-5 text-green-600" />
+        <CardTitle className="flex items-center gap-2 text-green-300">
+          <CheckCircle className="w-5 h-5 text-green-400" />
           Swap Completed Successfully!
         </CardTitle>
-        <CardDescription className="text-green-700">
+        <CardDescription className="text-green-200">
           Your tokens have been exchanged successfully
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Swap Summary */}
-        <div className="flex items-center justify-between p-4 bg-white rounded-lg border">
+        <div className="flex items-center justify-between p-4 bg-background rounded-lg border">
           <div className="flex items-center gap-3">
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">
+              <div className="text-2xl font-bold text-foreground">
                 {fromAmount}
               </div>
-              <div className="text-sm text-gray-600">{fromToken.symbol}</div>
+              <div className="text-sm text-muted-foreground">
+                {fromToken.symbol}
+              </div>
             </div>
-            <ArrowRight className="w-5 h-5 text-gray-400" />
+            <ArrowRight className="w-5 h-5 text-muted-foreground" />
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">{toAmount}</div>
-              <div className="text-sm text-gray-600">{toToken.symbol}</div>
+              <div className="text-2xl font-bold text-foreground">
+                {toAmount}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                {toToken.symbol}
+              </div>
             </div>
           </div>
         </div>
@@ -103,7 +109,7 @@ export function SwapResults({
 
         {/* Transaction Details */}
         <div className="space-y-3">
-          <h4 className="font-semibold text-gray-900 flex items-center gap-2">
+          <h4 className="font-semibold text-foreground flex items-center gap-2">
             <Clock className="w-4 h-4" />
             Transaction Details
           </h4>
@@ -112,11 +118,11 @@ export function SwapResults({
             {swapDetails.map((detail, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-3 bg-white rounded-lg border"
+                className="flex items-center justify-between p-3 bg-background rounded-lg border"
               >
                 <div className="flex items-center gap-2">
                   {detail.icon}
-                  <span className="text-sm font-medium text-gray-700">
+                  <span className="text-sm font-medium text-muted-foreground">
                     {detail.label}
                   </span>
                 </div>
@@ -128,7 +134,7 @@ export function SwapResults({
                   )}
                   <span
                     className={`text-sm font-mono ${
-                      detail.warning ? "text-red-600" : "text-gray-900"
+                      detail.warning ? "text-red-400" : "text-foreground"
                     }`}
                   >
                     {detail.value}

@@ -55,7 +55,7 @@ export function CandidateCard() {
           <div className="flex gap-2">
             <Badge
               variant="default"
-              className="bg-green-100 text-green-800 text-xs"
+              className="bg-green-900 text-green-100 text-xs"
             >
               {candidateInfo.availability}
             </Badge>
@@ -99,7 +99,7 @@ export function CandidateCard() {
             href={candidateInfo.links.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-sm text-blue-600 hover:underline"
+            className="flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300 hover:underline"
           >
             <Github className="w-4 h-4" />
             GitHub
@@ -108,7 +108,7 @@ export function CandidateCard() {
             href={candidateInfo.links.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-sm text-blue-600 hover:underline"
+            className="flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300 hover:underline"
           >
             <Linkedin className="w-4 h-4" />
             LinkedIn
@@ -117,7 +117,7 @@ export function CandidateCard() {
             href={candidateInfo.links.portfolio}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-sm text-blue-600 hover:underline"
+            className="flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300 hover:underline"
           >
             <Globe className="w-4 h-4" />
             Portfolio

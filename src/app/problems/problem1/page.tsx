@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { CodeBlock } from "@/components/ui/code-block";
 import { sum_to_n_a, sum_to_n_b, sum_to_n_c } from "./solution";
 
 export default function Problem1Page() {
@@ -113,15 +114,16 @@ export default function Problem1Page() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <pre className="bg-muted p-4 rounded-md text-sm overflow-x-auto">
-              {`var sum_to_n_a = function(n) {
+            <CodeBlock
+              language="javascript"
+              code={`var sum_to_n_a = function(n) {
     let sum = 0;
     for (let i = 1; i <= n; i++) {
         sum += i;
     }
     return sum;
 };`}
-            </pre>
+            />
           </CardContent>
         </Card>
 
@@ -136,11 +138,12 @@ export default function Problem1Page() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <pre className="bg-muted p-4 rounded-md text-sm overflow-x-auto">
-              {`var sum_to_n_b = function(n) {
+            <CodeBlock
+              language="javascript"
+              code={`var sum_to_n_b = function(n) {
     return (n * (n + 1)) / 2;
 };`}
-            </pre>
+            />
           </CardContent>
         </Card>
 
@@ -155,14 +158,15 @@ export default function Problem1Page() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <pre className="bg-muted p-4 rounded-md text-sm overflow-x-auto">
-              {`var sum_to_n_c = function(n) {
+            <CodeBlock
+              language="javascript"
+              code={`var sum_to_n_c = function(n) {
     if (n <= 0) {
         return 0;
     }
     return n + sum_to_n_c(n - 1);
 };`}
-            </pre>
+            />
           </CardContent>
         </Card>
       </div>

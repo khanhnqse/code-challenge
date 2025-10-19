@@ -14,7 +14,7 @@ import { SwapButton } from "./SwapButton";
 import { ExchangeRateDisplay } from "./ExchangeRateDisplay";
 import { ErrorAlerts } from "./ErrorAlerts";
 import { SubmitButton } from "./SubmitButton";
-import { SuccessMessage } from "./SuccessMessage";
+import { SwapResults } from "./SwapResults";
 import { ClearFormButton } from "./ClearFormButton";
 import { PriceLoadingIndicator } from "./PriceLoadingIndicator";
 
@@ -24,6 +24,7 @@ export function SwapForm() {
     formData,
     isSubmitting,
     submitSuccess,
+    swapResults,
     errors,
     pricesLoading,
     pricesError,
@@ -40,6 +41,7 @@ export function SwapForm() {
     handleSubmit,
     handleSwapTokens,
     handleClearForm,
+    handleCloseSwapResults,
     handleFromTokenSelect,
     handleToTokenSelect,
     handleFromAmountChange,
@@ -113,8 +115,19 @@ export function SwapForm() {
               hasErrors={Object.keys(errors).length > 0}
             />
 
-            {/* Success Message */}
-            <SuccessMessage show={submitSuccess} />
+            {/* Swap Results */}
+            <SwapResults
+              show={submitSuccess && !!swapResults}
+              fromToken={swapResults?.fromToken || null}
+              toToken={swapResults?.toToken || null}
+              fromAmount={swapResults?.fromAmount || ""}
+              toAmount={swapResults?.toAmount || ""}
+              exchangeRate={swapResults?.exchangeRate || null}
+              priceImpact={swapResults?.priceImpact || null}
+              minimumReceived={swapResults?.minimumReceived || ""}
+              estimatedValue={swapResults?.estimatedValue || ""}
+              onClose={handleCloseSwapResults}
+            />
 
             {/* Clear Form Button */}
             <ClearFormButton

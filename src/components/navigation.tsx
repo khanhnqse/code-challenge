@@ -21,8 +21,8 @@ const problems = [
   {
     id: "problem3",
     title: "Problem 3",
-    description: "Coming soon...",
-    status: "pending",
+    description: "Code Analysis & Refactoring",
+    status: "completed",
   },
 ];
 

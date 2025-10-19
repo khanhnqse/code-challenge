@@ -23,6 +23,16 @@ export function useSwapForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [swapResults, setSwapResults] = useState<{
+    fromToken: Token | null;
+    toToken: Token | null;
+    fromAmount: string;
+    toAmount: string;
+    exchangeRate: number | null;
+    priceImpact: number | null;
+    minimumReceived: string;
+    estimatedValue: string;
+  } | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const debouncedFromAmount = useDebounce(formData.fromAmount, 300);
@@ -216,6 +226,12 @@ export function useSwapForm() {
     });
     setErrors({});
     setSubmitSuccess(false);
+    setSwapResults(null);
+  }, []);
+
+  const handleCloseSwapResults = useCallback(() => {
+    setSubmitSuccess(false);
+    setSwapResults(null);
   }, []);
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
@@ -227,20 +243,30 @@ export function useSwapForm() {
 
     setIsSubmitting(true);
     setSubmitSuccess(false);
+    setSwapResults(null);
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
+      
+      // Capture swap results
+      setSwapResults({
+        fromToken: formData.fromToken,
+        toToken: formData.toToken,
+        fromAmount: formData.fromAmount,
+        toAmount: formData.toAmount,
+        exchangeRate,
+        priceImpact,
+        minimumReceived,
+        estimatedValue,
+      });
+      
       setSubmitSuccess(true);
-
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 3000);
     } catch (error) {
       console.error("Swap failed:", error);
     } finally {
       setIsSubmitting(false);
     }
-  }, [validateForm]);
+  }, [validateForm, formData, exchangeRate, priceImpact, minimumReceived, estimatedValue]);
 
   // Input handlers
   const handleFromTokenSelect = useCallback((token: Token) => {
@@ -263,6 +289,7 @@ export function useSwapForm() {
     formData,
     isSubmitting,
     submitSuccess,
+    swapResults,
     errors,
     pricesLoading,
     pricesError,
@@ -279,6 +306,7 @@ export function useSwapForm() {
     handleSubmit,
     handleSwapTokens,
     handleClearForm,
+    handleCloseSwapResults,
     handleFromTokenSelect,
     handleToTokenSelect,
     handleFromAmountChange,

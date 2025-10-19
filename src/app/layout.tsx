@@ -10,7 +10,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Code Challenge Solutions",
   description:
-    "A collection of coding challenge solutions built with Next.js and shadcn/ui",
+    "Submission for the 99TechTeam Frontend Code Challenge, containing three problems implemented with JavaScript and React.",
 };
 
 export default function RootLayout({

@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { CandidateCard } from "@/components/CandidateCard";
 
 const problems = [
   {
@@ -16,7 +17,6 @@ const problems = [
     description:
       "Three unique implementations of sum_to_n function using iterative, mathematical formula, and recursive approaches.",
     status: "completed",
-    features: ["Iterative Loop", "Gauss Formula", "Recursion"],
   },
   {
     id: "problem2",
@@ -24,33 +24,32 @@ const problems = [
     description:
       "Interactive currency swap form with real-time exchange rates, token selection, and validation.",
     status: "completed",
-    features: [
-      "Real-time Rates",
-      "Token Selection",
-      "Input Validation",
-      "Loading States",
-    ],
   },
   {
     id: "problem3",
-    title: "Problem 3",
-    description: "Coming soon...",
-    status: "pending",
-    features: [],
+    title: "Code Analysis & Refactoring",
+    description:
+      "Comprehensive analysis of computational inefficiencies and anti-patterns in React/TypeScript code with refactored solution.",
+    status: "completed",
   },
 ];
 
 export default function Home() {
   return (
     <div className="space-y-8">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">
-          Code Challenge Solutions
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          A collection of coding challenge solutions built with Next.js,
-          TypeScript, and shadcn/ui
-        </p>
+      <div className="text-center space-y-6">
+        <div className="space-y-4">
+          <h1 className="text-4xl font-bold tracking-tight">
+            Code Challenge Solutions
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            A collection of coding challenge solutions built with Next.js,
+            TypeScript, and shadcn/ui
+          </p>
+        </div>
+
+        {/* Candidate Information */}
+        <CandidateCard />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -69,16 +68,7 @@ export default function Home() {
               </div>
               <CardDescription>{problem.description}</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              {problem.features.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {problem.features.map((feature, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
-                      {feature}
-                    </Badge>
-                  ))}
-                </div>
-              )}
+            <CardContent>
               <Link href={`/problems/${problem.id}`}>
                 <Button
                   className="w-full"

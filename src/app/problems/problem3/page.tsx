@@ -1,39 +1,48 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  IssuesAnalysis,
+  CodeComparison,
+  DetailedExplanation,
+} from "./components";
 
 export default function Problem3Page() {
   return (
     <div className="space-y-8">
       <div className="text-center space-y-4">
-        <h1 className="text-3xl font-bold">Problem 3</h1>
+        <h1 className="text-3xl font-bold">
+          Problem 3: Code Analysis & Refactoring
+        </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          This problem is coming soon. Check back later for the implementation.
+          Analysis of computational inefficiencies and anti-patterns in
+          React/TypeScript code, with a refactored solution.
         </p>
+        <div className="flex justify-center gap-2">
+          <Badge variant="default">Completed</Badge>
+          <Badge variant="outline">Code Analysis</Badge>
+          <Badge variant="outline">Refactored</Badge>
+        </div>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            Status
-            <Badge variant="secondary">Pending</Badge>
-          </CardTitle>
-          <CardDescription>
-            This problem is currently under development.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground">
-            The solution for Problem 3 will be implemented soon. Stay tuned for
-            updates!
-          </p>
-        </CardContent>
-      </Card>
+      <Tabs defaultValue="analysis" className="w-full">
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="analysis">Issues Analysis</TabsTrigger>
+          <TabsTrigger value="comparison">Code Comparison</TabsTrigger>
+          <TabsTrigger value="explanation">Explanation</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="analysis" className="space-y-6">
+          <IssuesAnalysis />
+        </TabsContent>
+
+        <TabsContent value="comparison" className="space-y-6">
+          <CodeComparison />
+        </TabsContent>
+
+        <TabsContent value="explanation" className="space-y-6">
+          <DetailedExplanation />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

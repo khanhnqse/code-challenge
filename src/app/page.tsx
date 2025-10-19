@@ -20,28 +20,20 @@ const problems = [
   },
   {
     id: "problem2",
-    title: "Problem 2",
-    description: "Coming soon...",
-    status: "pending",
-    features: [],
+    title: "Currency Swap Form",
+    description:
+      "Interactive currency swap form with real-time exchange rates, token selection, and validation.",
+    status: "completed",
+    features: [
+      "Real-time Rates",
+      "Token Selection",
+      "Input Validation",
+      "Loading States",
+    ],
   },
   {
     id: "problem3",
     title: "Problem 3",
-    description: "Coming soon...",
-    status: "pending",
-    features: [],
-  },
-  {
-    id: "problem4",
-    title: "Problem 4",
-    description: "Coming soon...",
-    status: "pending",
-    features: [],
-  },
-  {
-    id: "problem5",
-    title: "Problem 5",
     description: "Coming soon...",
     status: "pending",
     features: [],

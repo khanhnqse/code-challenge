@@ -14,25 +14,13 @@ const problems = [
   },
   {
     id: "problem2",
-    title: "Problem 2",
-    description: "Coming soon...",
-    status: "pending",
+    title: "Currency Swap Form",
+    description: "Interactive currency swap with real-time rates",
+    status: "completed",
   },
   {
     id: "problem3",
     title: "Problem 3",
-    description: "Coming soon...",
-    status: "pending",
-  },
-  {
-    id: "problem4",
-    title: "Problem 4",
-    description: "Coming soon...",
-    status: "pending",
-  },
-  {
-    id: "problem5",
-    title: "Problem 5",
     description: "Coming soon...",
     status: "pending",
   },

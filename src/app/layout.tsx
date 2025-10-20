@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Code Challenge Solutions",
+  title: "Code Challenge Test for Frontend Role",
   description:
     "Submission for the 99TechTeam Frontend Code Challenge, containing three problems implemented with JavaScript and React.",
 };

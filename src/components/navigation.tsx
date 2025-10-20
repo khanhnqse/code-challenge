@@ -8,13 +8,13 @@ import { Badge } from "@/components/ui/badge";
 const problems = [
   {
     id: "problem1",
-    title: "Three Ways to Sum to N",
+    title: "Problem 1",
     description: "Three unique implementations of sum_to_n function",
     status: "completed",
   },
   {
     id: "problem2",
-    title: "Currency Swap Form",
+    title: "Problem 2",
     description: "Interactive currency swap with real-time rates",
     status: "completed",
   },
@@ -35,7 +35,7 @@ export function Navigation() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/" className="text-xl font-bold">
-              Code Challenge
+            99Tech
             </Link>
             <div className="hidden md:flex items-center space-x-6">
               {problems.map((problem) => (

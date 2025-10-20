@@ -47,52 +47,72 @@ const bestPractices = [
 
 export function DetailedExplanation() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Lightbulb className="w-5 h-5 text-blue-500" />
+    <Card className="border-2 border-dashed border-muted-foreground/20">
+      <CardHeader className="bg-muted/30">
+        <CardTitle className="flex items-center gap-2 text-foreground">
+          <Lightbulb className="w-5 h-5 text-blue-400" />
           Detailed Explanation
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 bg-muted/10">
         <div>
-          <h3 className="font-semibold mb-3">🔧 Issues Fixed:</h3>
-          <div className="space-y-3">
+          <h3 className="font-semibold mb-4 flex items-center gap-2 text-foreground">
+
+            Issues Fixed
+          </h3>
+          <div className="space-y-4">
             {fixes.map((fix, index) => (
-              <div key={index} className="p-3 bg-green-50 rounded-md">
-                <h4 className="font-medium text-green-800">
+              <div key={index} className="p-4rounded-lg">
+                <h4 className="font-medium text-white mb-3">
                   {index + 1}. {fix.title}
                 </h4>
-                <p className="text-sm text-green-700">
-                  <strong>Before:</strong> <code>{fix.before}</code>
-                  <br />
-                  <strong>After:</strong> <code>{fix.after}</code>
-                </p>
+                <div className="space-y-2 text-sm bg-background rounded-lg p-4">
+                  <div>
+                    <span className="text-green-200 font-medium">Before:</span>
+                    <code className="block mt-1 p-2 bg-red-900/20 border border-red-800/30 rounded text-red-300 text-xs font-mono">
+                      {fix.before}
+                    </code>
+                  </div>
+                  <div>
+                    <span className="text-green-200 font-medium">After:</span>
+                    <code className="block mt-1 p-2 bg-green-900/20 border border-green-800/30 rounded text-green-300 text-xs font-mono">
+                      {fix.after}
+                    </code>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
         <div>
-          <h3 className="font-semibold mb-3">⚡ Performance Improvements:</h3>
-          <ul className="list-disc list-inside space-y-1 text-sm">
-            {performanceImprovements.map((item, index) => (
-              <li key={index}>
-                <strong>{item.split(":")[0]}:</strong> {item.split(":")[1]}
-              </li>
-            ))}
-          </ul>
+          <h3 className="font-semibold mb-4 flex items-center gap-2 text-foreground">
+            Performance Improvements
+          </h3>
+          <div className="p-4 bg-yellow-900/20 border border-yellow-800/30 rounded-lg">
+            <ul className="list-disc list-inside space-y-2 text-sm text-yellow-100">
+              {performanceImprovements.map((item, index) => (
+                <li key={index} className="leading-relaxed">
+                  <strong className="text-yellow-200">{item.split(":")[0]}:</strong> {item.split(":")[1]}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div>
-          <h3 className="font-semibold mb-3">🎯 Best Practices Applied:</h3>
-          <ul className="list-disc list-inside space-y-1 text-sm">
-            {bestPractices.map((item, index) => (
-              <li key={index}>
-                <strong>{item.split(":")[0]}:</strong> {item.split(":")[1]}
-              </li>
-            ))}
-          </ul>
+          <h3 className="font-semibold mb-4 flex items-center gap-2 text-foreground">
+            Best Practices Applied
+          </h3>
+          <div className="p-4 bg-blue-900/20 border border-blue-800/30 rounded-lg">
+            <ul className="list-disc list-inside space-y-2 text-sm text-blue-100">
+              {bestPractices.map((item, index) => (
+                <li key={index} className="leading-relaxed">
+                  <strong className="text-blue-200">{item.split(":")[0]}:</strong> {item.split(":")[1]}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </CardContent>
     </Card>

@@ -82,7 +82,7 @@ A streamlined, highly optimized currency swap form with:
 - **Advanced Token Selection**: Searchable dropdown with keyboard navigation and accessibility
 - **Smart Calculations**: Debounced input processing and memoized exchange rate calculations
 - **Price Impact Analysis**: Shows price impact for large trades with minimum received amounts
-- **Real-time Validation**: Instant form validation with comprehensive error handling
+- **Smart Validation**: Simple, efficient validation that only checks on submit
 - **Simplified UX**: One-click swap without complex slippage settings
 - **Performance Optimized**: Memoized components, image optimization, and efficient re-renders
 - **Enhanced UX**: Loading states, retry mechanisms, and smooth animations

@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   IssuesAnalysis,
@@ -17,11 +16,6 @@ export default function Problem3Page() {
           Analysis of computational inefficiencies and anti-patterns in
           React/TypeScript code, with a refactored solution.
         </p>
-        <div className="flex justify-center gap-2">
-          <Badge variant="default">Completed</Badge>
-          <Badge variant="outline">Code Analysis</Badge>
-          <Badge variant="outline">Refactored</Badge>
-        </div>
       </div>
 
       <Tabs defaultValue="analysis" className="w-full">

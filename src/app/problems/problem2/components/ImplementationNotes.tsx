@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+// Removed unused Alert imports
 import {
   Info,
   CheckCircle,
@@ -111,18 +111,7 @@ export function ImplementationNotes() {
     },
   ];
 
-  const getIcon = (type: string) => {
-    switch (type) {
-      case "assumption":
-        return <AlertTriangle className="w-4 h-4 text-yellow-500" />;
-      case "decision":
-        return <CheckCircle className="w-4 h-4 text-green-500" />;
-      case "technical":
-        return <Lightbulb className="w-4 h-4 text-blue-500" />;
-      default:
-        return <Info className="w-4 h-4" />;
-    }
-  };
+  // Removed unused getIcon function
 
   const getBadgeVariant = (impact: string) => {
     switch (impact) {
@@ -138,16 +127,16 @@ export function ImplementationNotes() {
   };
 
   return (
-    <Card className="mt-6">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Info className="w-5 h-5" />
+    <Card className="mt-6 border-2 border-dashed border-muted-foreground/20">
+      <CardHeader className="bg-muted/30">
+        <CardTitle className="flex items-center gap-2 text-foreground">
+          <Info className="w-5 h-5 text-blue-400" />
           Implementation Notes & Assumptions
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="ml-auto"
+            className="ml-auto hover:bg-muted/50"
           >
             {isExpanded ? (
               <ChevronUp className="w-4 h-4" />
@@ -159,124 +148,136 @@ export function ImplementationNotes() {
       </CardHeader>
 
       {isExpanded && (
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-6 bg-muted/10">
           {/* Assumptions */}
           <div>
-            <h3 className="font-semibold mb-3 flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-yellow-500" />
+            <h3 className="font-semibold mb-4 flex items-center gap-2 text-foreground">
+              <AlertTriangle className="w-4 h-4 text-yellow-400" />
               Assumptions Made
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {assumptions.map((item, index) => (
-                <Alert key={index}>
-                  <div className="flex items-start gap-3">
-                    {getIcon(item.type)}
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="font-medium">{item.title}</span>
-                        <Badge
-                          variant={getBadgeVariant(item.impact)}
-                          className="text-xs"
-                        >
-                          {item.impact} Impact
-                        </Badge>
-                      </div>
-                      <AlertDescription>{item.description}</AlertDescription>
+                <div key={index} className="p-4 bg-yellow-900/20 border border-yellow-800/30 rounded-lg">
+                  <h4 className="font-medium text-yellow-300 mb-2">
+                    {index + 1}. {item.title}
+                  </h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-yellow-200 font-medium">Impact:</span>
+                      <Badge variant={getBadgeVariant(item.impact)} className="text-xs">
+                        {item.impact}
+                      </Badge>
+                    </div>
+                    <div>
+                      <span className="text-yellow-200 font-medium">Description:</span>
+                      <p className="text-yellow-100 mt-1 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
-                </Alert>
+                </div>
               ))}
             </div>
           </div>
 
           {/* Design Decisions */}
           <div>
-            <h3 className="font-semibold mb-3 flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-green-500" />
+            <h3 className="font-semibold mb-4 flex items-center gap-2 text-foreground">
+              <CheckCircle className="w-4 h-4 text-green-400" />
               Key Design Decisions
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {designDecisions.map((item, index) => (
-                <Alert key={index}>
-                  <div className="flex items-start gap-3">
-                    {getIcon(item.type)}
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="font-medium">{item.title}</span>
-                        <Badge
-                          variant={getBadgeVariant(item.impact)}
-                          className="text-xs"
-                        >
-                          {item.impact} Impact
-                        </Badge>
-                      </div>
-                      <AlertDescription>{item.description}</AlertDescription>
+                <div key={index} className="p-4 bg-green-900/20 border border-green-800/30 rounded-lg">
+                  <h4 className="font-medium text-green-300 mb-2">
+                    {index + 1}. {item.title}
+                  </h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-200 font-medium">Impact:</span>
+                      <Badge variant={getBadgeVariant(item.impact)} className="text-xs">
+                        {item.impact}
+                      </Badge>
+                    </div>
+                    <div>
+                      <span className="text-green-200 font-medium">Description:</span>
+                      <p className="text-green-100 mt-1 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
-                </Alert>
+                </div>
               ))}
             </div>
           </div>
 
           {/* Technical Notes */}
           <div>
-            <h3 className="font-semibold mb-3 flex items-center gap-2">
-              <Lightbulb className="w-4 h-4 text-blue-500" />
+            <h3 className="font-semibold mb-4 flex items-center gap-2 text-foreground">
+              <Lightbulb className="w-4 h-4 text-blue-400" />
               Technical Implementation Notes
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {technicalNotes.map((item, index) => (
-                <Alert key={index}>
-                  <div className="flex items-start gap-3">
-                    {getIcon(item.type)}
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="font-medium">{item.title}</span>
-                        <Badge
-                          variant={
-                            item.status === "resolved" ? "default" : "secondary"
-                          }
-                          className="text-xs"
-                        >
-                          {item.status}
-                        </Badge>
-                      </div>
-                      <AlertDescription>{item.description}</AlertDescription>
+                <div key={index} className="p-4 bg-blue-900/20 border border-blue-800/30 rounded-lg">
+                  <h4 className="font-medium text-blue-300 mb-2">
+                    {index + 1}. {item.title}
+                  </h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-200 font-medium">Status:</span>
+                      <Badge variant={item.status === "resolved" ? "default" : "secondary"} className="text-xs">
+                        {item.status}
+                      </Badge>
+                    </div>
+                    <div>
+                      <span className="text-blue-200 font-medium">Description:</span>
+                      <p className="text-blue-100 mt-1 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
-                </Alert>
+                </div>
               ))}
             </div>
           </div>
 
           {/* External Resources */}
           <div>
-            <h3 className="font-semibold mb-3 flex items-center gap-2">
-              <ExternalLink className="w-4 h-4" />
+            <h3 className="font-semibold mb-4 flex items-center gap-2 text-foreground">
+              <ExternalLink className="w-4 h-4 text-purple-400" />
               External Resources Used
             </h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="font-medium">Token Prices:</span>
-                <a
-                  href="https://interview.switcheo.com/prices.json"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  interview.switcheo.com/prices.json
-                </a>
+            <div className="space-y-4 text-sm">
+              <div className="p-4 bg-purple-900/20 border border-purple-800/30 rounded-lg">
+                <h4 className="font-medium text-purple-300 mb-2">
+                  1. Token Prices API
+                </h4>
+                <div className="space-y-2">
+                  <span className="text-purple-200 font-medium">URL:</span>
+                  <div>
+                    <a
+                      href="https://interview.switcheo.com/prices.json"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 hover:underline break-all"
+                    >
+                      interview.switcheo.com/prices.json
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="font-medium">Token Icons:</span>
-                <a
-                  href="https://github.com/Switcheo/token-icons"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  github.com/Switcheo/token-icons
-                </a>
+              <div className="p-4 bg-purple-900/20 border border-purple-800/30 rounded-lg">
+                <h4 className="font-medium text-purple-300 mb-2">
+                  2. Token Icons Repository
+                </h4>
+                <div className="space-y-2">
+                  <span className="text-purple-200 font-medium">URL:</span>
+                  <div>
+                    <a
+                      href="https://github.com/Switcheo/token-icons"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 hover:underline break-all"
+                    >
+                      github.com/Switcheo/token-icons
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

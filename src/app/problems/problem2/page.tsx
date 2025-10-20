@@ -1,6 +1,5 @@
 import { SwapForm } from "./components/SwapForm";
 import { ImplementationNotes } from "./components/ImplementationNotes";
-import { Badge } from "@/components/ui/badge";
 
 export default function Problem2Page() {
   return (
@@ -11,11 +10,6 @@ export default function Problem2Page() {
           A modern, intuitive currency swap form with real-time exchange rates,
           token selection, and interactive validation.
         </p>
-        <div className="flex justify-center gap-2">
-          <Badge variant="default">Completed</Badge>
-          <Badge variant="outline">Interactive</Badge>
-          <Badge variant="outline">Real-time Rates</Badge>
-        </div>
       </div>
 
       <SwapForm />

@@ -83,7 +83,7 @@ bun dev
 
 ## 📋 Problems
 
-### Problem 1: Three Ways to Sum to N ✅
+### Problem 1: Three Ways to Sum to N 
 Three unique implementations of the `sum_to_n` function with comprehensive analysis:
 
 - **Iterative Approach**: O(n) time complexity using a for loop
@@ -97,7 +97,7 @@ Three unique implementations of the `sum_to_n` function with comprehensive analy
 - Visual execution time display
 - Syntax highlighting with CodeBlock component
 
-### Problem 2: Currency Swap Form ✅
+### Problem 2: Currency Swap Form 
 A production-ready currency swap interface with advanced features:
 
 **Core Features:**
@@ -119,7 +119,7 @@ A production-ready currency swap interface with advanced features:
 - Image error handling with placeholder fallbacks
 - Token filtering based on price availability
 
-### Problem 3: Code Analysis & Refactoring ✅
+### Problem 3: Code Analysis & Refactoring 
 Comprehensive analysis of computational inefficiencies and anti-patterns:
 
 **Analysis Features:**

@@ -29,7 +29,9 @@ const candidateInfo = {
     "Next.js",
     "Node.js",
     "Tailwind CSS",
-    "shadcn/ui",
+    "HTML",
+    "CSS",
+    "JavaScript",
   ],
   links: {
     github: "https://github.com/khanhnqse",

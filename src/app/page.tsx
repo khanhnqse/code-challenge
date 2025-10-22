@@ -71,7 +71,8 @@ export default function Home() {
       </div>
 
       <div className="text-center text-sm text-muted-foreground">
-        <p>Built with Next.js 15, TypeScript, Tailwind CSS, and shadcn/ui</p>
+        <p>Built with Next.js 15, TypeScript, Tailwind CSS, and shadcn/ui </p>
+        <p>I used ChatGPT as a reference for ideas and best practices during implementation.</p>
       </div>
     </div>
   );

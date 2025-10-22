@@ -17,6 +17,7 @@ interface TokenInputSectionProps {
   onAmountChange: (amount: string) => void;
   placeholder?: string;
   readOnly?: boolean;
+  loading?: boolean;
 }
 
 export function TokenInputSection({
@@ -30,6 +31,7 @@ export function TokenInputSection({
   onAmountChange,
   placeholder = "0.0",
   readOnly = false,
+  loading = false,
 }: TokenInputSectionProps) {
   const fieldKey = label.toLowerCase().replace(" ", "");
 
@@ -42,6 +44,7 @@ export function TokenInputSection({
         onTokenSelect={onTokenSelect}
         placeholder={`Select token to swap ${label.toLowerCase()}`}
         totalTokens={TOKENS.length}
+        loading={loading}
       />
       {errors[`${fieldKey}Token`] && (
         <p className="text-sm text-destructive">{errors[`${fieldKey}Token`]}</p>

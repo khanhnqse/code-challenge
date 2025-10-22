@@ -39,32 +39,44 @@ export function useSwapForm() {
 
   // Memoize tokens with prices for better performance
   const tokensWithPrices = useMemo(() => {
-    if (!prices || Object.keys(prices).length === 0) return TOKENS;
+    // If prices are still loading or not available, return all tokens without prices
+    if (pricesLoading || !prices || Object.keys(prices).length === 0) {
+      return TOKENS.map(token => ({ ...token, price: undefined }));
+    }
 
+    // If we have prices but no available tokens yet, return all tokens with their prices if available
+    if (availableTokens.length === 0) {
+      return TOKENS.map(token => ({
+        ...token,
+        price: prices[token.symbol] || undefined,
+      }));
+    }
+
+    // Filter tokens that have prices and add price data
     return TOKENS.filter((token) => availableTokens.includes(token.symbol)).map(
       (token) => ({
         ...token,
         price: prices[token.symbol],
       })
     );
-  }, [prices, availableTokens]);
+  }, [prices, availableTokens, pricesLoading]);
 
   // Update form data with prices when they're available
   useEffect(() => {
-    if (availableTokens.length > 0) {
+    if (tokensWithPrices.length > 0) {
       setFormData((prev) => ({
         ...prev,
         fromToken:
-          prev.fromToken && availableTokens.includes(prev.fromToken.symbol)
+          prev.fromToken 
             ? tokensWithPrices.find((t) => t.symbol === prev.fromToken?.symbol) || null
             : null,
         toToken:
-          prev.toToken && availableTokens.includes(prev.toToken.symbol)
+          prev.toToken 
             ? tokensWithPrices.find((t) => t.symbol === prev.toToken?.symbol) || null
             : null,
       }));
     }
-  }, [tokensWithPrices, availableTokens]);
+  }, [tokensWithPrices]);
 
   // Memoize exchange rate calculation
   const exchangeRate = useMemo(() => {

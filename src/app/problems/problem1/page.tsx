@@ -13,10 +13,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { CodeBlock } from "@/components/ui/code-block";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Info, AlertTriangle } from "lucide-react";
 import { sum_to_n_a, sum_to_n_b, sum_to_n_c } from "./solution";
 
 export default function Problem1Page() {
   const [inputValue, setInputValue] = useState("5");
+  const [inputError, setInputError] = useState<string>("");
   const [results, setResults] = useState<{
     methodA: number | null;
     methodB: number | null;
@@ -24,13 +27,45 @@ export default function Problem1Page() {
     executionTimes: { methodA: number; methodB: number; methodC: number };
   } | null>(null);
 
-  const testFunctions = () => {
-    const n = parseInt(inputValue);
+  const validateInput = (value: string) => {
+    if (value === "") {
+      setInputError("Please enter a number");
+      return false;
+    }
 
-    if (isNaN(n) || n < 0) {
-      alert("Please enter a valid non-negative number.");
+    const n = parseInt(value);
+    
+    if (isNaN(n)) {
+      setInputError("Please enter a valid number");
+      return false;
+    }
+
+    if (n < 0) {
+      setInputError("Number must be non-negative");
+      return false;
+    }
+
+    if (n > 10000) {
+      setInputError("Number must be ≤ 10,000 (prevents stack overflow in recursive method)");
+      return false;
+    }
+
+    setInputError("");
+    return true;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInputValue(value);
+    validateInput(value);
+  };
+
+  const testFunctions = () => {
+    if (!validateInput(inputValue)) {
       return;
     }
+
+    const n = parseInt(inputValue);
 
     // Test Method A
     const startA = performance.now();
@@ -55,39 +90,6 @@ export default function Problem1Page() {
     });
   };
 
-  const runPerformanceTest = () => {
-    const testValues = [100, 1000, 5000];
-    let results = "Performance Comparison:\n\n";
-
-    testValues.forEach((n) => {
-      // Test Method A
-      const startA = performance.now();
-      for (let i = 0; i < 1000; i++) sum_to_n_a(n);
-      const timeA = (performance.now() - startA) / 1000;
-
-      // Test Method B
-      const startB = performance.now();
-      for (let i = 0; i < 1000; i++) sum_to_n_b(n);
-      const timeB = (performance.now() - startB) / 1000;
-
-      // Test Method C (limited to smaller values for recursion)
-      let timeC = "N/A";
-      if (n <= 1000) {
-        const startC = performance.now();
-        for (let i = 0; i < 100; i++) sum_to_n_c(n);
-        timeC = ((performance.now() - startC) / 100).toFixed(4) + "ms";
-      }
-
-      results += `n = ${n}:\n`;
-      results += `  Method A: ${timeA.toFixed(4)}ms (1000 iterations)\n`;
-      results += `  Method B: ${timeB.toFixed(4)}ms (1000 iterations)\n`;
-      results += `  Method C: ${timeC} ${
-        n <= 1000 ? "(100 iterations)" : "(skipped - too large for recursion)"
-      }\n\n`;
-    });
-
-    alert(results);
-  };
 
   return (
     <div className="space-y-8">
@@ -171,6 +173,15 @@ export default function Problem1Page() {
         </Card>
       </div>
 
+      <Alert className="border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950/20">
+        <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+        <AlertDescription className="text-blue-800 dark:text-blue-200">
+          <strong>Input Limit: 10,000</strong> - This limit prevents stack overflow in the recursive method (Method C). 
+          Each recursive call adds to the call stack, and JavaScript has a maximum call stack size. 
+          Larger values would cause the browser to crash with &quot;Maximum call stack size exceeded&quot; error.
+        </AlertDescription>
+      </Alert>
+
       <Card>
         <CardHeader>
           <CardTitle>Test the Functions</CardTitle>
@@ -183,20 +194,32 @@ export default function Problem1Page() {
           <div className="flex items-center gap-4">
             <div className="space-y-2">
               <Label htmlFor="testInput">Enter a number (n):</Label>
-              <Input
-                id="testInput"
-                type="number"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                min="0"
-                max="10000"
-                className="w-32"
-              />
+              <div className="space-y-1">
+                <Input
+                  id="testInput"
+                  type="number"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  min="0"
+                  max="10000"
+                  className={`w-32 ${inputError ? "border-red-500" : ""}`}
+                />
+                {inputError && (
+                  <Alert className="border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950/20">
+                    <AlertTriangle className="h-4 w-4 text-red-600 dark:text-red-400" />
+                    <AlertDescription className="text-red-800 dark:text-red-200">
+                      {inputError}
+                    </AlertDescription>
+                  </Alert>
+                )}
+              </div>
             </div>
             <div className="flex gap-2">
-              <Button onClick={testFunctions}>Test All Methods</Button>
-              <Button onClick={runPerformanceTest} variant="outline">
-                Performance Test
+              <Button 
+                onClick={testFunctions}
+                disabled={!!inputError || inputValue === ""}
+              >
+                Test All Methods
               </Button>
             </div>
           </div>

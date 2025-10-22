@@ -16,6 +16,7 @@ interface TokenSelectorProps {
   placeholder?: string;
   disabled?: boolean;
   totalTokens?: number;
+  loading?: boolean;
 }
 
 export function TokenSelector({
@@ -25,6 +26,7 @@ export function TokenSelector({
   placeholder = "Select token",
   disabled = false,
   totalTokens,
+  loading = false,
 }: TokenSelectorProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -145,7 +147,11 @@ export function TokenSelector({
             )}
           </div>
           <div className="max-h-60 overflow-y-auto">
-            {filteredTokens.length === 0 ? (
+            {loading ? (
+              <div className="p-4 text-center text-muted-foreground">
+                Loading tokens...
+              </div>
+            ) : filteredTokens.length === 0 ? (
               <div className="p-4 text-center text-muted-foreground">
                 No tokens found
               </div>

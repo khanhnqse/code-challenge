@@ -69,6 +69,7 @@ export function SwapForm() {
               errors={errors}
               onTokenSelect={handleFromTokenSelect}
               onAmountChange={handleFromAmountChange}
+              loading={pricesLoading}
             />
 
             {/* Swap Button */}
@@ -87,6 +88,7 @@ export function SwapForm() {
               onTokenSelect={handleToTokenSelect}
               onAmountChange={() => {}} // Read-only
               readOnly={true}
+              loading={pricesLoading}
             />
 
             {/* Exchange Rate Display */}
